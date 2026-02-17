@@ -1,0 +1,44 @@
+name: Build Windows EXE
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller numpy scikit-learn joblib xgboost lightgbm
+
+      - name: Build EXE
+        run: |
+          pyinstaller --name PSA_Predictor --onedir --windowed --noconfirm --add-data "model;model" --collect-submodules sklearn --hidden-import sklearn.utils._typedefs --hidden-import sklearn.utils._heap --hidden-import sklearn.utils._sorting --hidden-import sklearn.utils._vector_sentinel --hidden-import sklearn.neighbors._partition_nodes --hidden-import sklearn.tree._utils desktop_app.py
+
+      - name: Create zip
+        run: |
+          Compress-Archive -Path dist/PSA_Predictor/* -DestinationPath PSA_Predictor_Windows.zip
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: PSA_Predictor_Windows.zip
+          body: |
+            ## PSA Gray Zone Malignancy Prediction Tool
+
+            **Download and use:**
+            1. Download `PSA_Predictor_Windows.zip`
+            2. Unzip the file
+            3. Double-click `PSA_Predictor.exe`
+            4. Input biomarker values and click Predict
+
+            No Python installation required.
