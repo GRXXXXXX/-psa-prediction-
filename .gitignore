@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+catboost_info/
+dist/
+build/
+*.spec
+*.egg-info/
+CLAUDE.md
+.claude/

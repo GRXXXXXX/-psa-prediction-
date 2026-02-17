@@ -1,0 +1,60 @@
+{
+  "best_model_name": "Voting-3",
+  "optimal_cutoff": 0.1726,
+  "feature_names_4": [
+    "f-PSA/t-PSA(%)",
+    "PHI",
+    "PSAD",
+    "P2PSA（pg/ml）"
+  ],
+  "feature_names_5": [
+    "f-PSA/t-PSA(%)",
+    "PHI",
+    "PSAD",
+    "P2PSA（pg/ml）",
+    "计算得前列腺体积（ml）"
+  ],
+  "uses_feature_engineering": false,
+  "uses_5_features": true,
+  "cv_auc": 0.9038,
+  "sensitivity": 0.9444,
+  "specificity": 0.7805,
+  "accuracy": 0.81,
+  "model_results": {
+    "Voting-3": {
+      "auc_mean": 0.8797,
+      "auc_std": 0.093
+    },
+    "Stack-3": {
+      "auc_mean": 0.8779,
+      "auc_std": 0.0926
+    },
+    "Voting-4": {
+      "auc_mean": 0.8778,
+      "auc_std": 0.0943
+    },
+    "Stack-4": {
+      "auc_mean": 0.8767,
+      "auc_std": 0.0933
+    },
+    "LR-4Poly": {
+      "auc_mean": 0.8733,
+      "auc_std": 0.0872
+    },
+    "WVoting-5": {
+      "auc_mean": 0.8717,
+      "auc_std": 0.1021
+    }
+  },
+  "single_indicator_aucs": {
+    "f-PSA/t-PSA(%)": 0.7717,
+    "PHI": 0.8313,
+    "PSAD": 0.7846,
+    "P2PSA（pg/ml）": 0.5495,
+    "计算得前列腺体积（ml）": 0.7995
+  },
+  "class_distribution": {
+    "malignant": 18,
+    "benign": 82
+  }
+}
